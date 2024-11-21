@@ -67,7 +67,8 @@ function DemoComponent() {
         </div>
       </div>
       <div className="flex flex-col p-4 border border-white h-64 w-96 gap-4">
-        <h2 className="text-xl font-bold mb-8 text-center">Slow Renderer</h2>
+        <h2 className="text-xl font-bold text-center">A Slow Component</h2>
+        (This component renders thousands of boxes)
         <SlowComponent />
       </div>
     </div>
