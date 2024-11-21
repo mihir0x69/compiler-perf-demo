@@ -71,7 +71,7 @@ function DemoComponent() {
         <span className="text-center text-neutral-200 font-light">
           (This component renders 10,000 boxes)
         </span>
-        <SlowComponent />
+        <SlowComponent unused={{ name: "nope" }} />
       </div>
     </div>
   );
