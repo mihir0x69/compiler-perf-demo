@@ -1,6 +1,24 @@
 import { useState } from "react";
 import "./App.css";
 
+function SlowComponent() {
+  const largeArray = Array.from({ length: 10000 }, (_, i) => i);
+
+  return (
+    <div className="flex flex-wrap overflow-scroll gap-1">
+      {largeArray.map((value) => (
+        <div
+          key={value}
+          className="w-2 h-2 bg-neutral-700"
+          style={{
+            backgroundColor: `rgb(${value % 255}, ${(value * 2) % 255}, ${(value * 3) % 255})`,
+          }}
+        ></div>
+      ))}
+    </div>
+  );
+}
+
 function CounterButton(props: { onClick: () => void }) {
   return (
     <button
@@ -32,7 +50,7 @@ function DemoComponent() {
 
   return (
     <div className="flex gap-8 flex-1 items-center justify-center">
-      <div className="flex flex-col p-4 border border-white h-64 w-48 gap-4">
+      <div className="flex flex-col p-4 border border-white h-64 w-96 gap-4">
         <h2 className="text-xl font-bold mb-8 text-center">Color Picker</h2>
         <ColorPicker value={color} onChange={(e) => setColor(e)} />
         <div className="mt-2">
@@ -40,13 +58,17 @@ function DemoComponent() {
           <span className="font-mono">{color}</span>
         </div>
       </div>
-      <div className="flex flex-col p-4 border border-white h-64 w-48 gap-4">
+      <div className="flex flex-col p-4 border border-white h-64 w-96 gap-4">
         <h2 className="text-xl font-bold mb-8 text-center">Counter</h2>
         <CounterButton onClick={() => setCount((count) => count + 1)} />
         <div className="mt-2">
           Current value: <br />
           <span className="font-mono">{count}</span>
         </div>
+      </div>
+      <div className="flex flex-col p-4 border border-white h-64 w-96 gap-4">
+        <h2 className="text-xl font-bold mb-8 text-center">Slow Renderer</h2>
+        <SlowComponent />
       </div>
     </div>
   );
