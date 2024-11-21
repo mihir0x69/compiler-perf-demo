@@ -1,52 +1,64 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
-function Demo() {
+function CounterButton(props: { onClick: () => void }) {
   return (
-    <div>
-      <a href="https://vite.dev" target="_blank">
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-      </a>
-      <a href="https://react.dev" target="_blank">
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </a>
-    </div>
+    <button
+      onClick={props.onClick}
+      className="px-4 py-2 bg-neutral-700 text-white rounded hover:bg-neutral-600 border border-white/20"
+    >
+      Increase count
+    </button>
   );
 }
 
-function CounterButton(props: { onClick: () => void }) {
-  return <button onClick={props.onClick}>Increase count</button>;
+function ColorPicker(props: {
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <input
+      type="color"
+      value={props.value}
+      onChange={(e) => props.onChange(e.target.value)}
+      className="w-full h-12 cursor-pointer rounded border border-white/20 bg-neutral-700 p-1"
+    />
+  );
 }
 
-function ParentComponent() {
+function DemoComponent() {
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("#ffffff");
 
   return (
-    <div style={{ display: "flex", gap: "10px" }}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "1rem",
-          border: "1px solid black",
-        }}
-      >
-        <h2>Color Picker</h2>
-        <input
-          type="color"
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
-          style={{ width: "100%" }}
-        />
+    <div className="flex gap-8 flex-1 items-center justify-center">
+      <div className="flex flex-col p-4 border border-white h-64 w-48 gap-4">
+        <h2 className="text-xl font-bold mb-8 text-center">Color Picker</h2>
+        <ColorPicker value={color} onChange={(e) => setColor(e)} />
+        <div className="mt-2">
+          Current value: <br />
+          <span className="font-mono">{color}</span>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
+      <div className="flex flex-col p-4 border border-white h-64 w-48 gap-4">
+        <h2 className="text-xl font-bold mb-8 text-center">Counter</h2>
         <CounterButton onClick={() => setCount((count) => count + 1)} />
-        <div>Count is {count}</div>
+        <div className="mt-2">
+          Current value: <br />
+          <span className="font-mono">{count}</span>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function ParentComponent() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <h1 className="text-2xl font-bold text-center py-8">
+        React Compiler Demo
+      </h1>
+      <DemoComponent />
     </div>
   );
 }
