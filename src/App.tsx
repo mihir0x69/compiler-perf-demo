@@ -56,7 +56,7 @@ function DemoComponent() {
         <h2 className="text-xl font-bold mb-8 text-center">Color Picker</h2>
         <ColorPicker value={color} onChange={(e) => setColor(e)} />
         <div className="mt-2">
-          Current value: <br />
+          Present value: <br />
           <span className="font-mono">{color}</span>
         </div>
       </div>
@@ -64,7 +64,7 @@ function DemoComponent() {
         <h2 className="text-xl font-bold mb-8 text-center">Counter</h2>
         <CounterButton onClick={() => setCount((count) => count + 1)} />
         <div className="mt-2">
-          Current value: <br />
+          Present value: <br />
           <span className="font-mono">{count}</span>
         </div>
       </div>
