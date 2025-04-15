@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 function SlowComponent(props: { unused?: any }) {
   const largeArray = Array.from({ length: 10000 }, (_, i) => i);
 
